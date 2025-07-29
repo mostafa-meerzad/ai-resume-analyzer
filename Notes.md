@@ -508,3 +508,113 @@ Once you see how one path works, the rest follow the same logic.
 ---
 
 Would you like me to **start by simplifying JUST the `auth` part** into a standalone, smaller file so you can see it in isolation first?
+
+
+## Create Your Routes in React Router v7
+
+In the app folder under `routes.tsx` file you crate the file which will be rendered for that specific route.
+
+for example `auth.tsx` for `/auth` route.
+
+then we need to include it to our `routes.ts` file in the app folder so it's accessible
+
+
+```jsx
+import { type RouteConfig, index, route } from "@react-router/dev/routes";
+
+export default [
+  index("routes/home.tsx"),  // index points the homepage
+  route("/auth", "routes/auth.tsx"), // add your route like this, route("/path", "page-file-path")
+] satisfies RouteConfig;
+
+```
+
+here is the route in browser `http://localhost:5173/auth` now the auth.tsx file we crated is rendered.
+
+## Redirect Users to their requested page after authentication
+
+```jsx
+const location = useLocation()
+const next = location.search.split("next=")[1];
+const navigate = useNavigate()
+
+useEffect(() => {
+  if(auth.isAuthenticated ) navigate(next)
+}, [auth.isAuthenticated]);
+
+
+```
+
+Great question! This code is a **redirect handler** using React Router v7’s hooks. Let’s break it down step by step 👇
+
+---
+
+### 🧩 **What it does (high level):**
+
+When a user successfully logs in (`auth.isAuthenticated` changes to true), it automatically redirects them to the page they originally wanted to visit (defined by `?next=...` in the URL).
+
+---
+
+### 🔍 **Line-by-line explanation:**
+
+1️⃣ **`const location = useLocation()`**
+
+* `useLocation` is a React Router hook that gives you the **current URL info** (path, query params, hash).
+* Example: If you’re on `https://site.com/login?next=/dashboard`,
+
+  ```js
+  location.search // "?next=/dashboard"
+  ```
+
+---
+
+2️⃣ **`const next = location.search.split("next=")[1]`**
+
+* `location.search` is the query string (`?next=/dashboard`).
+* `.split("next=")` breaks it into: `["?","/dashboard"]`
+* `[1]` extracts `"/dashboard"`.
+
+✅ Now, `next` is the path the user should be redirected to after login.
+
+---
+
+3️⃣ **`const navigate = useNavigate()`**
+
+* `useNavigate` is another React Router hook for **programmatic navigation**.
+* Instead of `<Link to="/...">`, you can navigate in code:
+
+  ```js
+  navigate("/dashboard");
+  ```
+
+---
+
+4️⃣ **`useEffect` with `[auth.isAuthenticated]`**
+
+* This effect runs whenever `auth.isAuthenticated` changes.
+* If the user is now authenticated (`true`), it redirects them to `next`.
+
+```js
+useEffect(() => {
+  if (auth.isAuthenticated) navigate(next);
+}, [auth.isAuthenticated]);
+```
+
+---
+
+### 🔄 **Typical Flow Example:**
+
+1. User tries to access `/dashboard` but isn’t logged in → Redirected to `/login?next=/dashboard`
+2. They log in → `auth.isAuthenticated` becomes `true`.
+3. `useEffect` triggers → `navigate("/dashboard")`.
+4. User lands where they originally wanted to go.
+
+---
+
+### 🔥 **Why It’s Useful:**
+
+* This pattern is **common in protected routes** (login → redirect back).
+* Avoids hardcoding redirects; dynamically uses the `next` query param.
+
+---
+
