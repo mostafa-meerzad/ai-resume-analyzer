@@ -96,7 +96,7 @@ const Upload = () => {
     console.log(data);
     
     // Redirect to the results page with the resume ID
-    navigate(`/results/${uuid}`);
+    navigate(`/resume/${uuid}`);
 
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
