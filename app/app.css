@@ -21,19 +21,22 @@
 html,
 body {
   @apply bg-white;
+  font-family: 'Inter', sans-serif;
 }
 
 main {
-  @apply min-h-screen pt-10;
+  @apply min-h-screen pt-10 px-5 md:px-8 lg:px-12;
 }
 h1 {
-  @apply max-sm:text-[3rem] text-6xl  text-gradient leading-tight xl:tracking-[-2px] font-semibold;
+  @apply max-sm:text-[3.8rem] text-6xl border-2   text-gradient leading-[4.4rem] xl:tracking-[-2px] font-bold;
 }
 
 h2 {
-  @apply max-sm:text-xl text-3xl text-dark-200;
+  @apply max-sm:text-xl text-2xl max-sm:w-xs text-dark-200  md:-mt-6;
 }
-
+h3 {
+  @apply  text-lg text-dark-200;
+}
 label {
   @apply text-dark-200;
 }
@@ -85,7 +88,7 @@ form {
   }
 
   .resume-card {
-    @apply flex flex-col gap-8 h-[560px] w-[350px] lg:w-[430px] xl:w-[490px] bg-white rounded-2xl p-4;
+    @apply flex flex-col gap-8 h-auto  md:h-[700px] w-full lg:w-[430px] xl:w-[490px] bg-white rounded-2xl p-4;
   }
 
   .resume-card-header {
@@ -97,7 +100,7 @@ form {
   }
 
   .navbar {
-    @apply flex flex-row justify-between items-center bg-white rounded-full p-4 w-full px-10 max-w-[1200px] mx-auto;
+    @apply flex flex-row justify-between items-center bg-white rounded-full p-3 w-full px-4 pl-6 max-w-[1200px] mx-auto;
   }
 
   .score-badge {
