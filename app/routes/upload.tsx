@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "~/components/Navbar";
 import FileUploader from "~/routes/fileUploader";
 import { usePuterStore } from "~/lib/puter";
@@ -113,6 +113,16 @@ const Upload = () => {
     if (!file) return;
     handleAnalyze({ companyName, jobTitle, jobDescription, file });
   };
+
+
+
+  useEffect(() => {
+    console.log("this is loading state: ", isLoading);
+    if(isLoading) return;
+    // if (!auth.isAuthenticated) navigate(next);
+    if (!auth.isAuthenticated) navigate("/auth?next=/");
+    console.log(auth);
+  }, [isLoading]);
 
   return (
     <main className={"bg-[url('/images/bg-main.svg')] bg-cover"}>

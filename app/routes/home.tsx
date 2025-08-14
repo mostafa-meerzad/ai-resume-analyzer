@@ -13,16 +13,11 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const { auth, kv } = usePuterStore();
+  const { auth, kv, isLoading } = usePuterStore();
   const navigate = useNavigate();
 
   const [resumes, setResumes] = useState<Resume[]>([]);
   const [loadingResumes, setLoadingResumes] = useState(false);
-
-  useEffect(() => {
-    if (!auth.isAuthenticated) navigate("/auth?next=/");
-    console.log(auth);
-  }, [auth.isAuthenticated]);
 
   useEffect(() => {
     const loadResumes = async () => {
@@ -37,20 +32,38 @@ export default function Home() {
       setResumes(parsedResumes || []);
       setLoadingResumes(false);
     };
-    loadResumes();
-  }, []);
+
+    if (auth.isAuthenticated) {
+      loadResumes();
+    }
+  }, [isLoading]);
 
   return (
     <main className={"bg-[url('/images/bg-main.svg')] bg-cover"}>
       <Navbar />
       <section className="main-section">
-        <div className="page-heading py-16">
-          <h1>Track Your Applications & Resume Ratings</h1>
-          {!loadingResumes && resumes?.length === 0 ? (
-            <h2>No resumes found. Upload your first resume to get feedback.</h2>
-          ) : (
-            <h2>Review your submissions and check AI-powered feedback. </h2>
-          )}
+        <div className="page-heading pt-8">
+          <h1>AI Resume Analyzer</h1>
+          <h2 >Get Instant Feedback, Tips, and Ratings</h2>
+
+          <Link
+            to={"/upload"}
+            className={
+              " primary-button w-[90%] h-14 mt-16 flex justify-center items-center text-xl font-semibold"
+            }
+          >
+            Upload Resume
+          </Link>
+
+          <div className={"mt-8 max-w-[90%]"}>
+            {!loadingResumes && resumes?.length === 0 ? (
+              <h3>
+                No resumes found. Upload your first resume to get feedback.
+              </h3>
+            ) : (
+              <h3>Review your resumes and check AI-powered feedback. </h3>
+            )}
+          </div>
           {loadingResumes && (
             <div className={"flex flex-col justify-center items-center"}>
               <img
@@ -61,22 +74,15 @@ export default function Home() {
             </div>
           )}
         </div>
+
         {!loadingResumes && resumes.length > 0 && (
-          <div className="resumes-section">
+          <div className="resumes-section ">
             {resumes.map((resume) => (
               <ResumeCard key={resume.id} resume={resume} />
             ))}
           </div>
         )}
 
-        {!loadingResumes && resumes.length === 0 && (
-          <div className={"flex flex-col justify-center items-center mt-4 gap-4"}>
-            <Link
-              to={"/upload"}
-              className={"primary-button w-fit text-xl font-semibold"}
-            />
-          </div>
-        )}
       </section>
     </main>
   );
