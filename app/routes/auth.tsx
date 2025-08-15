@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
 import { usePuterStore } from "~/lib/puter";
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
 export const meta = () => [
   {
@@ -13,14 +12,6 @@ export const meta = () => [
 const Auth = () => {
   const { isLoading, auth } = usePuterStore();
   const location = useLocation();
-  const next = location.search.split("next=")[1];
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isLoading) return;
-    // if (!auth.isAuthenticated) navigate(next);
-    if(auth.isAuthenticated) navigate("/")
-  }, [isLoading]);
 
   return (
     <main
@@ -31,8 +22,14 @@ const Auth = () => {
       <div className="gradient-border shadow-lg">
         <section className="flex flex-col gap-8 bg-white rounded-2xl p-10">
           <div className="flex flex-col items-center gap-2 text-center">
-            <h1>Welcome</h1>
-            <h2>Log In to Continue Your Job Journey</h2>
+            <h1 className={"!font-semibold capitalize"}>
+              {auth.isAuthenticated ? "you're signed in" : "get started now"}
+            </h1>
+            <h2 className={"font-medium !text-gray-500"}>
+              {auth.isAuthenticated
+                ? "Ready to continue your job journey"
+                : "Sign in to continue your job journey"}
+            </h2>
           </div>
           <div>
             {isLoading ? (
@@ -43,16 +40,24 @@ const Auth = () => {
               <>
                 {auth.isAuthenticated ? (
                   <button className={"auth-button"} onClick={auth.signOut}>
-                    <p>Log Out</p>
+                    <p>Sign Out</p>
                   </button>
                 ) : (
                   <button className={"auth-button"} onClick={auth.signIn}>
-                    Log In
+                    Sign In
                   </button>
                 )}
               </>
             )}
           </div>
+          <Link
+            to={"/"}
+            className={
+              "font-semibold text-lg text-blue-950 hover:text-gray-700 "
+            }
+          >
+            Back to home
+          </Link>
         </section>
       </div>
     </main>
