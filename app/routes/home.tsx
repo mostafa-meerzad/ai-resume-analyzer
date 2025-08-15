@@ -46,13 +46,13 @@ export default function Home() {
           <Link
             to={"/upload"}
             className={
-              " primary-button w-[90%] h-14 mt-6 flex justify-center items-center text-xl font-semibold"
+              " primary-button w-[90%] h-14 mt-8 flex justify-center items-center text-xl font-semibold"
             }
           >
             Upload Resume
           </Link>
 
-          <div className={"mt-6 max-w-[90%]"}>
+          <div className={"mt-3 max-w-[90%]"}>
             {!loadingResumes && resumes?.length === 0 ? (
               <h3>
                 No resumes found. Upload your first resume to get feedback.
