@@ -2,7 +2,7 @@ import type { Route } from "./+types/home";
 import Navbar from "~/components/Navbar";
 import ResumeCard from "~/components/ResumeCard";
 import { usePuterStore } from "~/lib/puter";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link} from "react-router";
 import { useEffect, useState } from "react";
 
 export function meta({}: Route.MetaArgs) {
@@ -14,8 +14,6 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const { auth, kv, isLoading } = usePuterStore();
-  const navigate = useNavigate();
-
   const [resumes, setResumes] = useState<Resume[]>([]);
   const [loadingResumes, setLoadingResumes] = useState(false);
 
@@ -28,7 +26,6 @@ export default function Home() {
         (resume) => JSON.parse(resume.value) as Resume,
       );
 
-      console.log(parsedResumes);
       setResumes(parsedResumes || []);
       setLoadingResumes(false);
     };
@@ -44,18 +41,18 @@ export default function Home() {
       <section className="main-section">
         <div className="page-heading pt-8">
           <h1>AI Resume Analyzer</h1>
-          <h2 >Get Instant Feedback, Tips, and Ratings</h2>
+          <h2>Get Instant Feedback, Tips, and Ratings</h2>
 
           <Link
             to={"/upload"}
             className={
-              " primary-button w-[90%] h-14 mt-16 flex justify-center items-center text-xl font-semibold"
+              " primary-button w-[90%] h-14 mt-6 flex justify-center items-center text-xl font-semibold"
             }
           >
             Upload Resume
           </Link>
 
-          <div className={"mt-8 max-w-[90%]"}>
+          <div className={"mt-6 max-w-[90%]"}>
             {!loadingResumes && resumes?.length === 0 ? (
               <h3>
                 No resumes found. Upload your first resume to get feedback.
@@ -82,7 +79,6 @@ export default function Home() {
             ))}
           </div>
         )}
-
       </section>
     </main>
   );
