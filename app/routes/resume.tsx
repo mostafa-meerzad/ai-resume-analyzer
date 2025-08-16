@@ -45,6 +45,12 @@ const Resume = () => {
 
       if (!imageBlob) return;
 
+      console.log("Image blob: ", imageBlob);
+      console.log("Image blob type: ", imageBlob.type);
+      console.log('--------------');
+      console.log("data", data);
+      console.log("feedback: ", data.feedback);
+
       const imageUrl = URL.createObjectURL(imageBlob);
       setImageUrl(imageUrl);
 
