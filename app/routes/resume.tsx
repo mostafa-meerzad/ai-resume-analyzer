@@ -60,17 +60,17 @@ const Resume = () => {
     loadResume();
   }, [id]);
   return (
-    <main className={"!pt-0"}>
-      <nav className="resume-nav">
-        <Link to={"/"} className={"back-button"}>
-          <img src="/icons/back.svg" alt="back" className={"size-2.5"} />
-          <span className="text-gray-800 text-sm font-semibold">
+    <main className={"!pt-0 dark:bg-gray-900"}>
+      <nav className="resume-nav dark:bg-gray-800 dark:border-gray-700">
+        <Link to={"/"} className={"back-button dark:bg-gray-700 dark:border-gray-600"}>
+          <img src="/icons/back.svg" alt="back" className={"size-2.5 dark:invert"} />
+          <span className="text-gray-800 dark:text-gray-200 text-sm font-semibold">
             Back to Homepage
           </span>
         </Link>
       </nav>
       <div className="flex flex-row w-full max-lg:flex-col-reverse">
-        <section className=" feedback-section bg-[url('/images/bg-small.svg')] bg-cover h-[100vh] sticky top-0 ">
+        <section className=" feedback-section bg-[url('/images/bg-small.svg')] dark:bg-[url('/images/bg-small-dark.svg')] bg-cover h-[100vh] sticky top-0 ">
           {imageUrl && resumeUrl && (
             <div
               className={
@@ -87,8 +87,8 @@ const Resume = () => {
             </div>
           )}
         </section>
-        <section className="feedback-section">
-          <h2 className={"text-4xl !text-black font-bold"}>Resume Review</h2>
+        <section className="feedback-section dark:bg-gray-900">
+          <h2 className={"text-4xl !text-black dark:!text-white font-bold"}>Resume Review</h2>
 
           {feedback ? (
             <div

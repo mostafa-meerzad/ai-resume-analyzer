@@ -125,9 +125,9 @@ const Upload = () => {
   }, [isLoading]);
 
   return (
-    <main className={"bg-[url('/images/bg-main.svg')] bg-cover"}>
+    <main className={"bg-[url('/images/bg-main.svg')] dark:bg-[url('/images/bg-main-dark.svg')] bg-cover"}>
       <Navbar />
-      <section className="main-section">
+      <section className="main-section dark:text-white">
         <div className="page-heading py-16">
           <h1 className={"page-heading"}>Smart feedback for your dream job</h1>
           {isProcessing ? (
@@ -164,6 +164,7 @@ const Upload = () => {
                   name="company-name"
                   id="company-name"
                   placeholder="Company Name"
+                  className="dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 />
               </div>
               <div className="form-div">
@@ -173,6 +174,7 @@ const Upload = () => {
                   name="job-title"
                   id="job-title"
                   placeholder="Job title"
+                  className="dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 />
               </div>
               <div className="form-div">
@@ -182,6 +184,7 @@ const Upload = () => {
                   name="job-description"
                   id="job-description"
                   placeholder="Job Description"
+                  className="dark:bg-gray-700 dark:text-white dark:border-gray-600"
                 />
               </div>
               <div className="form-div">

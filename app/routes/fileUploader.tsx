@@ -31,7 +31,7 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
         <div className="cursor-point space-y-4">
           {file ? (
             <div
-              className="uploader-selected-file"
+              className="uploader-selected-file dark:bg-gray-700"
               onClick={(e) => e.stopPropagation()}
             >
               <img src="/images/pdf.png" alt="pdf" className={"size-10"} />
@@ -39,18 +39,18 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                 <div>
                   <p
                     className={
-                      "text-sm text-gray-700 font-medium truncate max-w-xs"
+                      "text-sm text-gray-700 dark:text-gray-200 font-medium truncate max-w-xs"
                     }
                   >
                     {file.name}
                   </p>
-                  <p className={"text-sm text-gray-500"}>
+                  <p className={"text-sm text-gray-500 dark:text-gray-400"}>
                     {formatSize(file.size)}
                   </p>
                 </div>
               </div>
               <button className={"p-2 cursor-pointer"} onClick={(e)=>onFileSelect?.(null)}>
-                <img src="/icons/cross.svg" alt="remove" className={"h-4 w-4"} />
+                <img src="/icons/cross.svg" alt="remove" className={"h-4 w-4 dark:invert"} />
               </button>
             </div>
           ) : (
@@ -59,14 +59,14 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                 <img
                   src="/icons/info.svg"
                   alt={"upload"}
-                  className={"size-20 mb-2"}
+                  className={"size-20 mb-2 dark:invert"}
                 />
               </div>
-              <p className="text-lg text-gray-500">
+              <p className="text-lg text-gray-500 dark:text-gray-300">
                 <span className={"font-semibold"}>Click to upload</span> or drag
                 and drop
               </p>
-              <p className="text-lg text-gray-500">
+              <p className="text-lg text-gray-500 dark:text-gray-300">
                 PDF (max {formatSize(20 * 1024 * 1024)})
               </p>
             </div>

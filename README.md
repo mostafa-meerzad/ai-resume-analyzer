@@ -1,18 +1,17 @@
-# Welcome to React Router!
+# AI Resume Analyzer
 
-A modern, production-ready template for building full-stack React applications using React Router.
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+A smart application that analyzes your resume and provides feedback, tips, and ratings to help you land your dream job.
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
+- 📄 Resume analysis with AI-powered feedback
+- 📊 ATS compatibility scoring
+- 💡 Personalized improvement suggestions
+- 🔍 Job description matching
+- 🌓 Dark mode support with theme toggle
+- 🔒 User authentication
+- 📱 Responsive design for all devices
 - 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
 
 ## Getting Started
 
@@ -80,8 +79,15 @@ Make sure to deploy the output of `npm run build`
 
 ## Styling
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+This application uses [Tailwind CSS](https://tailwindcss.com/) for styling, including its dark mode feature. The dark mode implementation includes:
+
+- Theme toggle button in the navbar
+- Dark versions of background images
+- Responsive dark mode styling for all components
+- Theme persistence using localStorage
+
+For more details about the dark mode implementation, see [DARK_MODE.md](./DARK_MODE.md).
 
 ---
 
-Built with ❤️ using React Router.
+Built with ❤️ by the AI Resume Analyzer team.

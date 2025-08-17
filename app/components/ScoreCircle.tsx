@@ -20,6 +20,7 @@ const ScoreCircle = ({ score = 75 }: { score: number }) => {
                     cy="50"
                     r={normalizedRadius}
                     stroke="#e5e7eb"
+                    className="dark:stroke-gray-600"
                     strokeWidth={stroke}
                     fill="transparent"
                 />
@@ -45,7 +46,7 @@ const ScoreCircle = ({ score = 75 }: { score: number }) => {
 
             {/* Score and issues */}
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="font-semibold text-sm">{`${score}/100`}</span>
+                <span className="font-semibold text-sm dark:text-white">{`${score}/100`}</span>
             </div>
         </div>
     );

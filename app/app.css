@@ -22,7 +22,7 @@
 
 html,
 body {
-  @apply bg-white;
+  @apply bg-white dark:bg-black;
   font-family: 'Inter', sans-serif;
 }
 
@@ -128,7 +128,7 @@ form {
 }
 
 @utility text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#AB8C95] via-[#000000] to-[#8E97C5];
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#AB8C95] via-[#000000] to-[#8E97C5] dark:via-[#fff];
 }
 
 @utility gradient-hover {

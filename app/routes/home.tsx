@@ -36,9 +36,9 @@ export default function Home() {
   }, [isLoading]);
 
   return (
-    <main className={"bg-[url('/images/bg-main.svg')] bg-cover"}>
+    <main className={"bg-[url('/images/bg-main.svg')] dark:bg-[url('/images/bg-main-dark.svg')] bg-cover"}>
       <Navbar />
-      <section className="main-section">
+      <section className="main-section dark:text-white">
         <div className="page-heading pt-8">
           <h1>AI Resume Analyzer</h1>
           <h2>Get Instant Feedback, Tips, and Ratings</h2>
