@@ -22,7 +22,7 @@
 
 html,
 body {
-  @apply bg-white dark:bg-black;
+  @apply bg-white dark:bg-black max-w-[90rem] mx-auto;
   font-family: 'Inter', sans-serif;
 }
 
@@ -79,7 +79,7 @@ form {
   .resume-summary {
     @apply flex flex-row items-center justify-center p-4 gap-4;
     .category {
-      @apply flex flex-row gap-2 items-center bg-gray-50 rounded-2xl p-4 w-full justify-between;
+      @apply flex flex-row gap-2 items-center bg-gray-100/80 dark:bg-gray-700 rounded-2xl p-4 w-full justify-between;
     }
   }
   .back-button {
@@ -99,7 +99,7 @@ form {
   }
 
   .resume-card {
-    @apply flex flex-col gap-8 h-auto  w-full lg:w-[430px] xl:w-[490px] bg-white rounded-2xl p-4;
+    @apply flex flex-col gap-8 h-auto  w-full lg:w-[430px] xl:w-[490px] bg-white shadow-2xl rounded-2xl p-4;
   }
 
   .resume-card-header {

@@ -33,7 +33,7 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
   };
 
   return (
-    <div className={`rounded-lg overflow-hidden bg-gradient-to-b ${getBgGradient()} to-white shadow-md`}>
+    <div className={`rounded-xl overflow-hidden bg-gradient-to-b ${getBgGradient()} to-white shadow-md`}>
       {/* Top section with icon and score */}
       <div className="p-6 flex items-center gap-4">
         <img src={getIcon()} alt="ATS Score Icon" className="w-12 h-12" />
@@ -60,7 +60,7 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
                 alt={suggestion.type === "good" ? "Check" : "Warning"} 
                 className="w-5 h-5 mt-0.5" 
               />
-              <p className="text-sm">{suggestion.tip}</p>
+              <p className="text-sm text-gray-800">{suggestion.tip}</p>
             </div>
           ))}
         </div>

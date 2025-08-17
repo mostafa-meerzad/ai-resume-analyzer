@@ -54,22 +54,32 @@ const Resume = () => {
     loadResume();
   }, [id]);
   return (
-    <main className={"!pt-0 dark:bg-gray-900"}>
-      <nav className="resume-nav dark:bg-gray-800 dark:border-gray-700">
-        <Link to={"/"} className={"back-button dark:bg-gray-700 dark:border-gray-600"}>
-          <img src="/icons/back.svg" alt="back" className={"size-2.5 dark:invert"} />
+    <main className={"pt-0 dark:bg-gray-900 bg-[url('/images/bg-small.svg')] dark:bg-[url('/images/bg-small-dark.svg')]  bg-cover"}>
+      <nav className={"mb-10"}>
+        <Link
+          to={"/"}
+          className={"back-button bg-white dark:bg-gray-700 dark:border-gray-600 w-fit"}
+        >
+          <img
+            src="/icons/back.svg"
+            alt="back"
+            className={"size-2.5 dark:invert"}
+          />
           <span className="text-gray-800 dark:text-gray-200 text-sm font-semibold">
             Back to Homepage
           </span>
         </Link>
       </nav>
-      <div className="flex flex-row w-full max-lg:flex-col-reverse">
-        <section className=" feedback-section bg-[url('/images/bg-small.svg')] dark:bg-[url('/images/bg-small-dark.svg')] bg-cover h-[100vh] sticky top-0 ">
+
+      <h2 className={"text-4xl !text-black dark:!text-white font-bold order-1 text-center mx-auto "}>
+        Resume Review
+      </h2>
+      <div className="flex flex-row w-full max-lg:flex-col-reverse md:mt-6 gap-6">
+
+        <section className=" feedback-section dark:bg-gray-900/50 rounded-2xl  ">
           {imageUrl && resumeUrl && (
             <div
-              className={
-                "p-4 animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-full"
-              }
+
             >
               <a href={resumeUrl} target={`_blank`} rel="noreferrer">
                 <img
@@ -81,9 +91,7 @@ const Resume = () => {
             </div>
           )}
         </section>
-        <section className="feedback-section dark:bg-gray-900">
-          <h2 className={"text-4xl !text-black dark:!text-white font-bold"}>Resume Review</h2>
-
+        <section className="feedback-section dark:bg-gray-900/50 rounded-2xl">
           {feedback ? (
             <div
               className={"flex flex-col gap-8 animate-in fade-in duration-1000"}

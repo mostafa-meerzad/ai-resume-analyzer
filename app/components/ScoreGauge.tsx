@@ -14,8 +14,8 @@ const ScoreGauge = ({ score = 75 }: { score: number }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="relative w-40 h-20">
-        <svg viewBox="0 0 100 50" className="w-full h-full">
+      <div className="relative w-30 h-18 md:w-40 md:h-25">
+        <svg viewBox="0 0 100 60" className="w-full h-full">
           <defs>
             <linearGradient
               id="gaugeGradient"
@@ -52,7 +52,7 @@ const ScoreGauge = ({ score = 75 }: { score: number }) => {
         </svg>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
-          <div className="text-xl font-semibold pt-4">{score}/100</div>
+          <div className="text-[1.2rem] md:text-2xl font-semibold pt-6 md:pt-8">{score}/100</div>
         </div>
       </div>
     </div>

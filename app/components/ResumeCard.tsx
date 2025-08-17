@@ -38,7 +38,7 @@ const ResumeCard = ({
         </div>
       ) : (
         <>
-          <div className="resume-card-header">
+          <div className={`${!companyName && !jobTitle ? "flex justify-around items-center" : " resume-card-header" }`}>
             <div className="flex flex-col gap-2">
               {companyName && (
                 <h2 className="!text-black dark:!text-white font-bold break-words">
@@ -63,7 +63,7 @@ const ResumeCard = ({
           </div>
 
           {resumeUrl && (
-            <div className="gradient-border dark:bg-gray-700 animate-in fade-in duration-1000">
+            <div className="gradient-border bg-gray-400 dark:bg-gray-700 animate-in fade-in duration-1000">
               <div className="w-full h-full">
                 <img
                   src={resumeUrl}
