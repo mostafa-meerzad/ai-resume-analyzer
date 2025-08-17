@@ -2,7 +2,7 @@ import type { Route } from "./+types/home";
 import Navbar from "~/components/Navbar";
 import ResumeCard from "~/components/ResumeCard";
 import { usePuterStore } from "~/lib/puter";
-import { Link} from "react-router";
+import { Link } from "react-router";
 import { useEffect, useState } from "react";
 
 export function meta({}: Route.MetaArgs) {
@@ -20,12 +20,32 @@ export default function Home() {
   useEffect(() => {
     const loadResumes = async () => {
       setLoadingResumes(true);
-      const resumes = (await kv.list("resume:*", true)) as KVItem[];
+      const storedResumes = (await kv.list("resume:*", true)) as KVItem[];
 
-      const parsedResumes = resumes?.map(
-        (resume) => JSON.parse(resume.value) as Resume,
-      );
-
+      const parsedResumes = storedResumes?.map((resume) => {
+        const parsedResume = JSON.parse(resume.value);
+        // Parse feedback string into JSON object if it's a string
+        if (
+          parsedResume.feedback &&
+          typeof parsedResume.feedback === "string"
+        ) {
+          try {
+            parsedResume.feedback = JSON.parse(parsedResume.feedback);
+          } catch (error) {
+            console.error("Error parsing feedback:", error);
+            // Provide a default feedback object to prevent errors
+            parsedResume.feedback = {
+              overallScore: 0,
+              ATS: { score: 0, tips: [] },
+              toneAndStyle: { score: 0, tips: [] },
+              content: { score: 0, tips: [] },
+              structure: { score: 0, tips: [] },
+              skills: { score: 0, tips: [] },
+            };
+          }
+        }
+        return parsedResume as Resume;
+      });
       setResumes(parsedResumes || []);
       setLoadingResumes(false);
     };
@@ -36,7 +56,11 @@ export default function Home() {
   }, [isLoading]);
 
   return (
-    <main className={"bg-[url('/images/bg-main.svg')] dark:bg-[url('/images/bg-main-dark.svg')] bg-cover"}>
+    <main
+      className={
+        "bg-[url('/images/bg-main.svg')] dark:bg-[url('/images/bg-main-dark.svg')] bg-cover"
+      }
+    >
       <Navbar />
       <section className="main-section dark:text-white">
         <div className="page-heading pt-8">

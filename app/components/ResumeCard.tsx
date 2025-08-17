@@ -12,10 +12,6 @@ const ResumeCard = ({
   const [resumeUrl, setResumeUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // console.log("this is resume ", resumeUrl);
-  console.log("this is the feedback: ", feedback);
-  console.log( feedback.overallScore);
-
   useEffect(() => {
     setIsLoading(true);
     const loadResume = async () => {
