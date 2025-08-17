@@ -164,7 +164,7 @@ const Upload = () => {
                   name="company-name"
                   id="company-name"
                   placeholder="Company Name"
-                  className="dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                  className=" "
                 />
               </div>
               <div className="form-div">
@@ -174,7 +174,7 @@ const Upload = () => {
                   name="job-title"
                   id="job-title"
                   placeholder="Job title"
-                  className="dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                  className=""
                 />
               </div>
               <div className="form-div">
@@ -184,7 +184,7 @@ const Upload = () => {
                   name="job-description"
                   id="job-description"
                   placeholder="Job Description"
-                  className="dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                  className="dark:bg-gray-800 dark:text-white bg-gray-200 dark:border-gray-600"
                 />
               </div>
               <div className="form-div">
@@ -192,7 +192,7 @@ const Upload = () => {
                 <FileUploader onFileSelect={handleFileSelect} />
               </div>
 
-              <button type="submit" className={"primary-button"}>
+              <button type="submit" className={`${!file ? " disable-button": "primary-button "} p-3 text-lg`}>
                 Analyze Resume
               </button>
             </form>

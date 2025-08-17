@@ -65,11 +65,11 @@ const Auth = () => {
         >
           <p className={"text-gray-600 dark:text-gray-300"}>
             Your AI credits are provided by Puter. Track your usage or top up
-            credits at puter.com.
-          </p>
-          <Link to={"https://puter.com"} className={"text-blue-700 dark:text-blue-400"}>
+            credits at <Link to={"https://puter.com"} className={"text-blue-700 dark:text-blue-400"}>
             puter.con
-          </Link>
+          </Link>.
+          </p>
+
         </div>
       </section>
       {/*</div>*/}

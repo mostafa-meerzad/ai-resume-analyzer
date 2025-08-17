@@ -13,7 +13,8 @@ const ResumeCard = ({
   const [isLoading, setIsLoading] = useState(false);
 
   // console.log("this is resume ", resumeUrl);
-  // console.log("this is the feedback: ", feedback);
+  console.log("this is the feedback: ", feedback);
+  console.log( feedback.overallScore);
 
   useEffect(() => {
     setIsLoading(true);
@@ -31,10 +32,14 @@ const ResumeCard = ({
   return (
     <Link
       to={`/resume/${id}`}
-      className={"resume-card animate-in fade-in duration-1000 dark:bg-gray-800 dark:text-white"}
+      className={
+        "resume-card animate-in fade-in duration-1000 dark:bg-gray-800 dark:text-white"
+      }
     >
       {isLoading ? (
-        <div className={"resume-card dark:bg-gray-800 dark:text-white"}>loading...</div>
+        <div className="flex items-center justify-center h-[400px] md:h-[500px] dark:bg-gray-800 dark:text-white">
+          <div className="w-8 h-8 border-4 border-gray-300 border-t-gray-800 rounded-full animate-spin dark:border-gray-600 dark:border-t-white"></div>
+        </div>
       ) : (
         <>
           <div className="resume-card-header">
@@ -50,11 +55,14 @@ const ResumeCard = ({
                 </h3>
               )}
               {!companyName && !jobTitle && (
-                <h2 className={"!text-black dark:!text-white font-bold"}>Resume</h2>
+                <h2 className={"!text-black dark:!text-white font-bold"}>
+                  Resume
+                </h2>
               )}
             </div>
             <div className="flex-shrink-0">
               <ScoreCircle score={feedback.overallScore} />
+              {/*{feedback.overallScore}*/}
             </div>
           </div>
 
@@ -64,7 +72,9 @@ const ResumeCard = ({
                 <img
                   src={resumeUrl}
                   alt="resume"
-                  className="w-full h-[350px] object-cover object-top"
+                  width={1000}
+                  height={1000}
+                  className="w-full h-[400px] md:h-[500px] object-cover object-top"
                 />
               </div>
             </div>
