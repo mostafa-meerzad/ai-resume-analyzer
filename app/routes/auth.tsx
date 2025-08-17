@@ -20,7 +20,7 @@ const Auth = () => {
         "bg-[url('/images/bg-auth.svg')] dark:bg-[url('/images/bg-auth-dark.svg')] bg-cover min-h-screen flex flex-col gap-8 "
       }
     >
-      <Link to={"/"} className={"back-button w-fit dark:bg-gray-700 dark:border-gray-600"}>
+      <Link to={"/"} className={"back-button w-fit bg-white dark:bg-gray-700 dark:border-gray-600"}>
         <img src="/icons/back.svg" alt="back" className={"size-2.5 dark:invert"} />
         <span className="text-gray-800 dark:text-gray-200 text-sm font-semibold">
           Back to Homepage
