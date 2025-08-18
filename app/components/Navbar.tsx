@@ -15,7 +15,7 @@ const Navbar = () => {
         {auth.isAuthenticated && (
           <p
             className={
-              " text-lg text-gray-500 dark:text-gray-300 overflow-hidden text-ellipsis whitespace-nowrap max-w-[130px] md:max-w-[220px]"
+              " text-lg text-gray-500 dark:text-gray-300 overflow-hidden text-ellipsis whitespace-nowrap max-w-[130px] md:max-w-[220px]  hidden sm:block"
             }
             onClick={auth.signOut}
           >
