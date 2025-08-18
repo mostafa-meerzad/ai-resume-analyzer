@@ -4,6 +4,7 @@ import { usePuterStore } from "~/lib/puter";
 import Summary from "~/components/Summary";
 import ATS from "~/components/ATS";
 import Details from "~/components/Details";
+import Navbar from "~/components/Navbar";
 
 export const meta = () => [
   {
@@ -54,33 +55,34 @@ const Resume = () => {
     loadResume();
   }, [id]);
   return (
-    <main className={"pt-0 dark:bg-gray-900 bg-[url('/images/bg-small.svg')] dark:bg-[url('/images/bg-small-dark.svg')]  bg-cover"}>
-      <nav className={"mb-10"}>
-        <Link
-          to={"/"}
-          className={"back-button bg-white dark:bg-gray-700 dark:border-gray-600 w-fit"}
-        >
-          <img
-            src="/icons/back.svg"
-            alt="back"
-            className={"size-2.5 dark:invert"}
-          />
-          <span className="text-gray-800 dark:text-gray-200 text-sm font-semibold">
-            Back to Homepage
-          </span>
-        </Link>
-      </nav>
-
-      <h2 className={"text-4xl !text-black dark:!text-white font-bold order-1 text-center mx-auto "}>
+    <main
+      className={
+        "pt-0 dark:bg-gray-900 bg-[url('/images/bg-small.svg')] dark:bg-[url('/images/bg-small-dark.svg')]  bg-cover"
+      }
+    >
+      <Navbar />
+      <h2
+        className={
+          "!text-4xl !text-black dark:!text-white font-bold order-1 text-center mx-auto mt-12 lg:!mt-24 mb-4"
+        }
+      >
         Resume Review
       </h2>
+
+      <div className={" flex justify-center items-center"}>
+        {!isLoading && !feedback && (
+          <img
+            src="/images/resume-scan-2.gif"
+            alt=""
+            className={"size-[300px] mt-12"}
+          />
+        )}
+      </div>
+
       <div className="flex flex-row w-full max-lg:flex-col-reverse md:mt-6 gap-6">
-
-        <section className=" feedback-section dark:bg-gray-900/50 rounded-2xl  ">
+        <section className=" feedback-section dark:bg-gray-900/50 bg-gray-200 rounded-2xl  ">
           {imageUrl && resumeUrl && (
-            <div
-
-            >
+            <div>
               <a href={resumeUrl} target={`_blank`} rel="noreferrer">
                 <img
                   src={imageUrl}
@@ -91,8 +93,9 @@ const Resume = () => {
             </div>
           )}
         </section>
-        <section className="feedback-section dark:bg-gray-900/50 rounded-2xl">
-          {feedback ? (
+        <section className="feedback-section dark:bg-gray-900/50 bg-gray-200
+         rounded-2xl">
+          {feedback && (
             <div
               className={"flex flex-col gap-8 animate-in fade-in duration-1000"}
             >
@@ -103,8 +106,6 @@ const Resume = () => {
               />
               <Details feedback={feedback} />
             </div>
-          ) : (
-            <img src="/images/resume-scan-2.gif" alt="" className={"w-full"} />
           )}
         </section>
       </div>
