@@ -31,13 +31,13 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
   });
 
   return (
-    <div className={"w-full gradient-border dark:bg-gray-800"}>
+    <div className={"w-full gradient-border dark:bg-gray-900 "}>
       <div {...getRootProps()} className="relative">
         <input {...getInputProps()} />
         <div className="cursor-pointer space-y-4">
           {selectedFile ? (
             <div
-              className="uploader-selected-file dark:bg-gray-700"
+              className="uploader-selected-file  dark:bg-gray-600"
               onClick={(e) => e.stopPropagation()} // Prevent triggering the dropzone when clicked inside
             >
               <img src="/images/pdf.png" alt="pdf" className={"size-10"} />
@@ -70,8 +70,8 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
               </button>
             </div>
           ) : (
-            <div>
-              <div className="mx-auto w-16 h-16 flex justify-center items-center">
+            <div className={"flex flex-col items-center justify-center p-4"}>
+              <div className="mx-auto w-16 h-16 flex justify-center items-center mb-4 ">
                 <img
                   src="/icons/info.svg"
                   alt={"upload"}
@@ -82,7 +82,7 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                 <span className={"font-semibold"}>Click to upload</span> or drag
                 and drop
               </p>
-              <p className="text-lg text-gray-500 dark:text-gray-300">
+              <p className="text-md text-gray-500 dark:text-gray-300">
                 PDF (max {formatSize(20 * 1024 * 1024)})
               </p>
             </div>
