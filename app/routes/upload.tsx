@@ -61,7 +61,6 @@ const Upload = () => {
 
     setStatusText("Preparing data...");
     const uuid = generateUUID();
-    console.log("uuid ", uuid);
     const data = {
       id: uuid,
       resumePath: uploadedFile.path,
@@ -93,8 +92,7 @@ const Upload = () => {
     data.feedback = feedbackText;
     await kv.set(`resume:${uuid}`, JSON.stringify({...data}));
     setStatusText("Analysis complete, redirecting...");
-    console.log(data);
-    
+
     // Redirect to the results page with the resume ID
     navigate(`/resume/${uuid}`);
 
@@ -109,7 +107,6 @@ const Upload = () => {
     const jobTitle = formData.get("job-title") as string;
     const jobDescription = formData.get("job-description") as string;
 
-    // console.log({ companyName, jobTitle, jobDescription, file });
     if (!file) return;
     handleAnalyze({ companyName, jobTitle, jobDescription, file });
   };
@@ -117,11 +114,8 @@ const Upload = () => {
 
 
   useEffect(() => {
-    console.log("this is loading state: ", isLoading);
     if(isLoading) return;
-    // if (!auth.isAuthenticated) navigate(next);
     if (!auth.isAuthenticated) navigate("/auth?next=/");
-    console.log(auth);
   }, [isLoading]);
 
   return (
