@@ -1,6 +1,7 @@
 import { usePuterStore } from "~/lib/puter";
 import { Link, useLocation, useNavigate } from "react-router";
 import React from "react";
+import { motion } from "framer-motion";
 
 export const meta = () => [
   {
@@ -20,57 +21,117 @@ const Auth = () => {
         "bg-[url('/images/bg-auth.svg')] dark:bg-[url('/images/bg-auth-dark.svg')] bg-cover min-h-screen flex flex-col gap-8 "
       }
     >
-      <Link to={"/"} className={"back-button w-fit bg-white dark:bg-gray-700 dark:border-gray-600"}>
-        <img src="/icons/back.svg" alt="back" className={"size-2.5 dark:invert"} />
-        <span className="text-gray-800 dark:text-gray-200 text-sm font-semibold">
-          Back to Homepage
-        </span>
-      </Link>
-      {/*<div className="gradient-border shadow-lg border-2 border-red-500 w-full h-[100vh]">*/}
+      <motion.div
+        className="back-button w-fit bg-white dark:bg-gray-700 dark:border-gray-600"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 0.6,
+          ease: "easeOut",
+        }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <Link to={"/"} className="flex items-center gap-2">
+          <img
+            src="/icons/back.svg"
+            alt="back"
+            className="size-2.5 dark:invert"
+          />
+          <span className="text-gray-800 dark:text-gray-200 text-sm font-semibold">
+            Back to Homepage
+          </span>
+        </Link>
+      </motion.div>
       <section className="flex flex-col items-center justify-center gap-8 bg-white dark:bg-gray-800 rounded-2xl pt-20 pb-10">
-        <div className="flex flex-col items-center gap-7 text-center">
-          <h1 className={" capitalize px-4"}>
+        {/* Animate Title */}
+        <motion.div
+          className="flex flex-col items-center gap-7 text-center"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <motion.h1
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="capitalize px-4"
+          >
             {auth.isAuthenticated ? "you're signed in" : "get started now"}
-          </h1>
-          <h2 className={"font-medium !text-gray-500 dark:!text-gray-300"}>
+          </motion.h1>
+          <motion.h2
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+            className="font-medium !text-gray-500 dark:!text-gray-300"
+          >
             {auth.isAuthenticated
               ? "Ready to continue your job journey"
               : "Sign in to continue your job journey"}
-          </h2>
-        </div>
-        {/*<div>*/}
-        <div className={"mt-3"}>
+          </motion.h2>
+        </motion.div>
+
+        {/* Animate Sign-In / Sign-Out Button */}
+        <motion.div
+          className="mt-3"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
+        >
           {isLoading ? (
-            <button className={"auth-button animate-pulse"}>
+            <motion.button
+              className="auth-button animate-pulse"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <p>Signing you in...</p>
-            </button>
+            </motion.button>
           ) : (
             <>
               {auth.isAuthenticated ? (
-                <button className={"auth-button"} onClick={auth.signOut}>
+                <motion.button
+                  className="auth-button"
+                  onClick={auth.signOut}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <p>Sign Out</p>
-                </button>
+                </motion.button>
               ) : (
-                <button className={"auth-button"} onClick={auth.signIn}>
+                <motion.button
+                  className="auth-button"
+                  onClick={auth.signIn}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   Sign In
-                </button>
+                </motion.button>
               )}
             </>
           )}
-        </div>
+        </motion.div>
 
-        <div
-          className="flex flex-col justify-center items-center mt-20 text-center
-          px-10 "
+        {/* Fade-in Information Text */}
+        <motion.div
+          className="flex flex-col justify-center items-center mt-20 text-center px-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
         >
-          <p className={"text-gray-600 dark:text-gray-300"}>
+          <p className="text-gray-600 dark:text-gray-300">
             Your AI credits are provided by Puter. Track your usage or top up
-            credits at <Link to={"https://puter.com"} className={"text-blue-700 dark:text-blue-400"}>
-            puter.con
-          </Link>.
+            credits at{" "}
+            <Link
+              to={"https://puter.com"}
+              className="text-blue-700 dark:text-blue-400"
+            >
+              puter.com
+            </Link>
+            .
           </p>
-
-        </div>
+        </motion.div>
       </section>
       {/*</div>*/}
     </main>
