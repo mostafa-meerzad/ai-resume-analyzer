@@ -4,6 +4,7 @@ import ResumeCard from "~/components/ResumeCard";
 import { usePuterStore } from "~/lib/puter";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -64,37 +65,73 @@ export default function Home() {
       <Navbar />
       <section className="main-section dark:text-white">
         <div className="page-heading pt-8">
-          <h1>AI Resume Analyzer</h1>
-          <h2>Get Instant Feedback, Tips, and Ratings</h2>
+          <motion.h1
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            AI Resume Analyzer
+          </motion.h1>
+          <motion.h2
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          >
+            Get Instant Feedback, Tips, and Ratings
+          </motion.h2>
+        </div>
 
+        <motion.div
+          className={"primary-button w-[90%] h-14 mt-8 text-xl font-semibold"}
+          initial={{
+            scale: 1,
+            boxShadow: "0 0 0px 0px rgba(81,113,255,0.6)",
+          }}
+          whileHover={{
+            scale: 1.01,
+            boxShadow: "0 0 10px 4px rgba(81,113,255,0.6)",
+          }}
+          whileTap={{ scale: 0.97 }}
+        >
           <Link
             to={"/upload"}
-            className={
-              " primary-button w-[90%] h-14 mt-8 flex justify-center items-center text-xl font-semibold"
-            }
+            className={"w-full h-full flex justify-center items-center"}
           >
             Upload Resume
           </Link>
+        </motion.div>
 
-          <div className={"mt-3 max-w-[90%]"}>
-            {!loadingResumes && resumes?.length === 0 ? (
-              <h3>
-                No resumes found. Upload your first resume to get feedback.
-              </h3>
-            ) : (
-              <h3>Review your resumes and check AI-powered feedback. </h3>
-            )}
+        <div className={"mt-3 max-w-[90%]"}>
+          {!loadingResumes && resumes?.length === 0 ? (
+            <motion.h3 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              No resumes found. Upload your first resume to get feedback.
+            </motion.h3>
+          ) : (
+            <motion.h3 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              Review your resumes and check AI-powered feedback.{" "}
+            </motion.h3>
+          )}
+        </div>
+        {loadingResumes ? (
+          <div className={"flex flex-col justify-center items-center p-0"}>
+            <img
+              src="/images/resume-scan-2.gif"
+              className={"w-[200px] "}
+              alt=""
+            />
           </div>
-          {loadingResumes && (
-            <div className={"flex flex-col justify-center items-center"}>
+        ) : (
+          !loadingResumes &&
+          resumes.length === 0 && (
+            <div className={"flex flex-col justify-center items-center my-5"}>
               <img
-                src="/images/resume-scan-2.gif"
-                className={"w-[200px]"}
+                src="/images/forbidden.png"
+                className={"w-[110px] "}
                 alt=""
               />
             </div>
-          )}
-        </div>
+          )
+        )}
 
         {!loadingResumes && resumes.length > 0 && (
           <div className="resumes-section ">
