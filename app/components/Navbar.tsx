@@ -8,12 +8,17 @@ const Navbar = () => {
   const { isDarkMode, toggleTheme } = useTheme();
 
   return (
-    <motion.nav initial={{scale: .8, opacity:0}} whileInView={{scale: 1, opacity: 1}} transition={{
-    ease: "easeInOut",
-      duration: .5,
-
-    }} className={"navbar dark:bg-gray-800 dark:text-white"}>
-      <motion.div whileHover={{scale: 1.05}}>
+    <motion.nav
+      initial={{ scale: 0.95, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{
+        ease: "easeInOut",
+        duration: 0.5,
+      }}
+      viewport={{ once: true }}
+      className={"navbar dark:bg-gray-800 dark:text-white"}
+    >
+      <motion.div whileHover={{ scale: 1.05 }}>
         <Link to={"/"} className={" text-xl font-bold text-gradient"}>
           Resumind
         </Link>
@@ -39,7 +44,7 @@ const Navbar = () => {
         >
           <Link
             to={"/auth"}
-            className={" primary-button w-fit py-1 hover:shadow-lg"}
+            className={" primary-button w-fit py-2 hover:shadow-lg"}
           >
             {auth.isAuthenticated ? "Sign Out" : "Sign In"}
           </Link>
