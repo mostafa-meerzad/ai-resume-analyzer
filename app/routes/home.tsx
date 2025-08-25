@@ -101,7 +101,7 @@ export default function Home() {
           </Link>
         </motion.div>
 
-        <div className={"mt-3 max-w-[90%]"}>
+        <div className={"mt-3 max-w-[90%] text-center "}>
           {!loadingResumes && resumes?.length === 0 ? (
             <motion.h3 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               No resumes found. Upload your first resume to get feedback.
